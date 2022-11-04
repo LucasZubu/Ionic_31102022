@@ -1,0 +1,22 @@
+Importações primeiro na .modulo e dpois na .page
+
+    //Modulo
+    import { ReactiveFormsModule } from '@angular/forms'; = .modulo
+        -Informar embaixo
+
+
+    //Page
+    import { FormBuilder } from '@angular/forms'; = .page
+        -Informar no constructor
+
+    criar a variavel form
+        exemplo = loginForm = this.formBuilder.group({});
+
+        loginForm = this.formBuilder.group({
+             email: [''] = lista de parametros 1º oq quer a apareça,2º validações(required = obriga texto)
+        });
+
+    // HTML
+
+    colocar tudo dentro de um form
+        e indificar os campos com exemplo( formControlName="email")
