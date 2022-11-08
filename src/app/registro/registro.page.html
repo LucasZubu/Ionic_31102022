@@ -5,48 +5,55 @@
 </ion-header>
 
 <ion-content>
+  
   <ion-img src="https://blogjack.blob.core.windows.net/medias/2020/06/hello-world.jpeg" alt="Hello Word"></ion-img>
+    <ion-card>
+      <form [formGroup]="registroForm">
+              <ion-card-header>
+                <ion-item lines="none" color="dark">
+                  <label class="meio">REGISTRO</label>
+                </ion-item>
+              </ion-card-header>
 
-  <ion-card>
-    <ion-card-header>
-      <ion-item lines="none" color="dark">
-        <label class="meio">REGISTRO</label>
-      </ion-item>
-    </ion-card-header>
-
-    <ion-card-content>
-      <ion-item>
-        <ion-label position="floating">Nome</ion-label>
-        <ion-input placeholder="Digite seu Nome"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">E-mail</ion-label>
-        <ion-input placeholder="Digite Seu Email"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">CPF</ion-label>
-        <ion-input placeholder="Digite seu CPF"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Senha</ion-label>
-        <ion-input placeholder="Digite a senha"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Confirmar senha</ion-label>
-        <ion-input placeholder="Confirme a senha"></ion-input>
-      </ion-item>
-    </ion-card-content>
-
-  </ion-card>
-  <ion-button expand="full">Registrar</ion-button>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-button expand="full">Voltar</ion-button>
-      </ion-col>
-      <ion-col>
-        <ion-button expand="full">Limpar</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+              <ion-card-content>
+                <ion-item>
+                  <ion-label position="floating">Nome</ion-label>
+                  <ion-input id="nome" formControlName="nome"></ion-input>
+                  <ng-container *ngFor="let erro of menssagensErro.nome">
+                    <span class="msg-erro" *ngIf="nome.errors?.[erro.tipo] && (nome.dirty || nome.touched)" >
+                      {{erro.aviso}} 
+                    </span>   
+                  </ng-container>
+                </ion-item>
+                <ion-item>
+                  <ion-label position="floating">E-mail</ion-label>
+                  <ion-input placeholder="Digite Seu Email"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label position="floating">CPF</ion-label>
+                  <ion-input placeholder="Digite seu CPF"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label position="floating">Senha</ion-label>
+                  <ion-input placeholder="Digite a senha"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label position="floating">Confirmar senha</ion-label>
+                  <ion-input placeholder="Confirme a senha"></ion-input>
+                </ion-item>
+              </ion-card-content>
+      </form>
+    </ion-card>
+    <ion-button expand="full">Registrar</ion-button>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-button expand="full">Voltar</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button expand="full">Limpar</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  
 </ion-content>

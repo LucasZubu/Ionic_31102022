@@ -15,12 +15,19 @@ export class LoginPage implements OnInit {
 
   menssagensErro = {
     email:[{tipo:'required', aviso:'Escreva Algo'},{tipo:'email', aviso:'Digite um E-mail'},],
-    senha:[{tipo:'required', aviso:'Escreva Algo'},{tipo:'minLength', aviso:'Senha não compativel'},],
+    senha:[{tipo:'required', aviso:'Escreva Algo'},{tipo:'minlength', aviso:'Senha não compativel'},],
   };
 
   constructor(private formBuilder: FormBuilder) {}
-
-  ngOnInit() {
+  
+  get email(){
+    return this.loginForm.get('email');
   }
 
+  get senha(){
+    return this.loginForm.get('senha');
+  }
+
+  ngOnInit() { }
+  
 }

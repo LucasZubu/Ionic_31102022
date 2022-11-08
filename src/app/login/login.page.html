@@ -11,30 +11,40 @@
   <ion-card>
     <form [formGroup]="loginForm">
       <ion-card-header>
-        <ion-item>
+        <ion-item style="flex-direction: colum">
           <ion-label position="floating">Email</ion-label>
-          <ion-input placeholder="Enter text" type="email" formControlName="email"></ion-input>
+          <ion-input placeholder="Enter text" type="email"  id="email" formControlName="email"></ion-input>       
+          <ng-container *ngFor="let erro of menssagensErro.email">
+            <span class="msg-erro" *ngIf="email.errors?.[erro.tipo] && (email.dirty || email.touched)" >
+               {{erro.aviso}} 
+            </span>   
+          </ng-container>
         </ion-item>
       </ion-card-header>
 
       <ion-card-content>
         <ion-item>
           <ion-label position="floating">Senha</ion-label>
-          <ion-input placeholder="Enter text" type="password" formControlName="senha"></ion-input>
+          <ion-input placeholder="Enter text" type="password" id="senha" formControlName="senha"></ion-input>
+          <ng-container *ngFor="let erro of menssagensErro.senha">
+            <span class="msg-erro" *ngIf="senha.errors?.[erro.tipo] && (senha.dirty || senha.touched)" >
+               {{erro.aviso}} 
+            </span>   
+          </ng-container>
         </ion-item>
       </ion-card-content>
 
       <ion-grid>
         <ion-row>
           <ion-col size="6">
-            <ion-button expand="full">Entrar</ion-button>
+            <ion-button expand="full" color="dark">Entrar</ion-button>
           </ion-col>
           <ion-col size="6">
-            <ion-button expand="full">Registrar</ion-button>
+            <ion-button expand="full" color="dark">Registrar</ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>
-      <ion-button expand="full">Esqueci a Senha</ion-button>
+      <ion-button expand="full" color="dark">Esqueci a Senha</ion-button>
     </form>
   </ion-card>
 </ion-content>
