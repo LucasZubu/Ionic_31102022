@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { StorageService } from '../services/storage.service';
 
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.page.html',
   styleUrls: ['./registro.page.scss'],
 })
-export class RegistroPage implements OnInit {
-
+export class RegistroPage implements OnInit {     
+  pessoa = {};
+  
   registroForm = this.formBuilder.group({
     nome:         ['',Validators.compose([Validators.required, Validators.minLength(3)])],
     email:        ['',Validators.compose([Validators.required, Validators.email])],
     cpf:          ['',Validators.compose([Validators.required, Validators.minLength(11),Validators.maxLength(14)])],
     senha:        ['',Validators.compose([Validators.required, Validators.minLength(8)])], 
-    confirmsenha: ['',Validators.compose([Validators.required, Validators.minLength(8)])],
+    confirmasenha: ['',Validators.compose([Validators.required, Validators.minLength(8)])],
  });
 
  menssagensErro = {
@@ -35,9 +37,29 @@ export class RegistroPage implements OnInit {
 };
 
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private bd: StorageService) { }
 
-  ngOnInit() {
-  }
+  get nome(){
+       return this.registroForm.get('nome');
+     }
+  get email(){
+       return this.registroForm.get('email');
+       } 
+  get cpf(){
+       return this.registroForm.get('cpf');
+       } 
+                      
+  get confirmasenha(){
+       return this.registroForm.get('confirmasenha');
+       }   
 
+  get senha(){
+       return this.registroForm.get('senha');
+     }
+   
+     ngOnInit() { }
+
+     async salvar(){
+          this.bd.set('email',this.pessoa)
+     }
 }

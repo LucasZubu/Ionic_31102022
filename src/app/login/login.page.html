@@ -13,12 +13,14 @@
       <ion-card-header>
         <ion-item style="flex-direction: colum">
           <ion-label position="floating">Email</ion-label>
-          <ion-input placeholder="Enter text" type="email"  id="email" formControlName="email"></ion-input>       
+          <ion-input placeholder="Enter text" type="email"  id="email" formControlName="email"></ion-input>  
+
           <ng-container *ngFor="let erro of menssagensErro.email">
             <span class="msg-erro" *ngIf="email.errors?.[erro.tipo] && (email.dirty || email.touched)" >
                {{erro.aviso}} 
             </span>   
           </ng-container>
+
         </ion-item>
       </ion-card-header>
 
@@ -26,11 +28,13 @@
         <ion-item>
           <ion-label position="floating">Senha</ion-label>
           <ion-input placeholder="Enter text" type="password" id="senha" formControlName="senha"></ion-input>
+
           <ng-container *ngFor="let erro of menssagensErro.senha">
             <span class="msg-erro" *ngIf="senha.errors?.[erro.tipo] && (senha.dirty || senha.touched)" >
                {{erro.aviso}} 
             </span>   
           </ng-container>
+          
         </ion-item>
       </ion-card-content>
 

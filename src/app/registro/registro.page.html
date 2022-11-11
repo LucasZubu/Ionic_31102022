@@ -8,8 +8,8 @@
   
   <ion-img src="https://blogjack.blob.core.windows.net/medias/2020/06/hello-world.jpeg" alt="Hello Word"></ion-img>
     <ion-card>
-      <form [formGroup]="registroForm">
-              <ion-card-header>
+     <form [formGroup]="registroForm">
+             <ion-card-header>
                 <ion-item lines="none" color="dark">
                   <label class="meio">REGISTRO</label>
                 </ion-item>
@@ -19,30 +19,60 @@
                 <ion-item>
                   <ion-label position="floating">Nome</ion-label>
                   <ion-input id="nome" formControlName="nome"></ion-input>
+
                   <ng-container *ngFor="let erro of menssagensErro.nome">
                     <span class="msg-erro" *ngIf="nome.errors?.[erro.tipo] && (nome.dirty || nome.touched)" >
                       {{erro.aviso}} 
-                    </span>   
+                    </span>  
                   </ng-container>
+
                 </ion-item>
                 <ion-item>
                   <ion-label position="floating">E-mail</ion-label>
                   <ion-input placeholder="Digite Seu Email"></ion-input>
+
+                  <ng-container *ngFor="let erro of menssagensErro.email">
+                    <span class="msg-erro" *ngIf="email.errors?.[erro.tipo] && (email.dirty || email.touched)" >
+                      {{erro.aviso}} 
+                    </span>   
+                  </ng-container> 
+
                 </ion-item>
                 <ion-item>
                   <ion-label position="floating">CPF</ion-label>
                   <ion-input placeholder="Digite seu CPF"></ion-input>
+
+                  <ng-container *ngFor="let erro of menssagensErro.cpf">
+                    <span class="msg-erro" *ngIf="cpf.errors?.[erro.tipo] && (cpf.dirty || cpf.touched)" >
+                      {{erro.aviso}} 
+                    </span>   
+                  </ng-container>
+
                 </ion-item>
                 <ion-item>
                   <ion-label position="floating">Senha</ion-label>
                   <ion-input placeholder="Digite a senha"></ion-input>
+
+                  <ng-container *ngFor="let erro of menssagensErro.senha">
+                    <span class="msg-erro" *ngIf="senha.errors?.[erro.tipo] && (senha.dirty || senha.touched)" >
+                      {{erro.aviso}} 
+                    </span>   
+                  </ng-container>
+
                 </ion-item>
                 <ion-item>
                   <ion-label position="floating">Confirmar senha</ion-label>
                   <ion-input placeholder="Confirme a senha"></ion-input>
+
+                  <ng-container *ngFor="let erro of menssagensErro.confirmasenha">
+                    <span class="msg-erro" *ngIf="confirmasenha.errors?.[erro.tipo] && (confirmasenha.dirty || confirmasenha.touched)" >
+                      {{erro.aviso}} 
+                    </span>   
+                  </ng-container>   
+
                 </ion-item>
               </ion-card-content>
-      </form>
+       </form> 
     </ion-card>
     <ion-button expand="full">Registrar</ion-button>
     <ion-grid>
