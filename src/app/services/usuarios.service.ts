@@ -1,0 +1,55 @@
+import { Injectable } from '@angular/core';
+import { Usuario } from '../models/Usuario.model';
+import { StorageService } from './storage.service';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UsuariosService {
+  /**
+   * Toda tabela no banco necessita de uma classe.
+   * Para utilizar a classe de usuarios é necessario transformar o objeto usuario{} tem que ser transformado na lista usuario[]
+   * @param usuarioService 
+   * Declarados em () são como parametros das funções
+   * Para consultas é necessario o comando return
+   * O comando Await
+   */
+  // Toda vez que for crriar um serviço precisa declarar no contrutor para ser instanciado na classe
+
+  listaUsuarios: Usuario[] = [];
+  constructor(private storageService: StorageService) { }
+
+  async salvar(usuario: Usuario) { 
+    //para inserir é necessario informar o usuario antes de imprimir como o generate de um banco.  
+    this.listaUsuarios[usuario.id] = usuario;
+    await this.storageService.set('usuarios',this.listaUsuarios);
+  }
+
+  async buscarUm() { }
+
+  async buscarTodos() {
+    // unknow é pra quando for vazio e quando n for é a lista de usuarios
+    //pra n dar erro quando vazio o if que se ouver nenhum registro retornar uma lista vazia.
+    this.listaUsuarios = await this.storageService.get('usuarios') as unknown as Usuario[];
+    if (!this.listaUsuarios){
+      return[];
+    }
+    return this.listaUsuarios;    
+   }
+
+  async deletar() { }
+
+  async salvarId(id: number) { 
+    await this.storageService.set('idUsuario',id);
+  }
+
+  // if pra quaando n tiver nenhum usuario retornar 0
+  async buscarId() { 
+    const id = await this.storageService.get('idUsuario');
+    if (!id){ 
+      return 0;    
+    }
+    return id;
+  }
+
+}

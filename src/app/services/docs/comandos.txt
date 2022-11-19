@@ -1,0 +1,4 @@
+ionic generate service service/usuario 
+    Exemplo de criação de serviços
+
+    Toda vez que for crriar um serviço precisa declarar no contrutor para ser instanciado na classe
