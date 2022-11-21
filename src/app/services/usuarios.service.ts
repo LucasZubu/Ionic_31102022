@@ -18,6 +18,23 @@ export class UsuariosService {
 
   listaUsuarios: Usuario[] = [];
   constructor(private storageService: StorageService) { }
+  
+  async login(email:string, senha:string){
+    this.buscarTodos();
+    let usuario: Usuario;
+    this.listaUsuarios.filter(item =>{
+      if (item.email.toLocaleLowerCase() == email.toLocaleLowerCase()){
+        usuario = item;
+      }
+    });
+    if (usuario?.senha === senha){
+      return usuario;
+    }
+
+
+    return null;
+  }
+
 
   async salvar(usuario: Usuario) { 
     //para inserir é necessario informar o usuario antes de imprimir como o generate de um banco.  

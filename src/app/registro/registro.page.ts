@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Usuario } from '../models/Usuario.model';
 import { StorageService } from '../services/storage.service';
 import { UsuariosService } from '../services/usuarios.service';
@@ -10,7 +11,7 @@ import { UsuariosService } from '../services/usuarios.service';
   styleUrls: ['./registro.page.scss'],
 })
 export class RegistroPage implements OnInit {
-  usuario : Usuario = new.Usuario();        
+  usuario : Usuario = new Usuario;        
   pessoa = {};
   
   registroForm = this.formBuilder.group({
@@ -40,7 +41,9 @@ export class RegistroPage implements OnInit {
 };
 
 
-  constructor(private formBuilder: FormBuilder, private bd: StorageService, private usuariosService : UsuariosService) { }
+  constructor(private formBuilder: FormBuilder, private bd: StorageService, 
+     private usuariosService : UsuariosService,
+     private route: Router) { }
 
   get nome(){
        return this.registroForm.get('nome');
@@ -77,7 +80,8 @@ export class RegistroPage implements OnInit {
             this.usuariosService.salvar(this.usuario);
             
             this.usuariosService.salvarId(id+1);
-
+            alert('Sucesso!');   
+            this.route.navigateByUrl('/login');
           }
           else{
                alert('Formulario Inválido');

@@ -29,7 +29,7 @@
                 </ion-item>
                 <ion-item>
                   <ion-label position="floating">E-mail</ion-label>
-                  <ion-input placeholder="Digite Seu Email"></ion-input>
+                  <ion-input id="email" formControlName="email"></ion-input>
 
                   <ng-container *ngFor="let erro of menssagensErro.email">
                     <span class="msg-erro" *ngIf="email.errors?.[erro.tipo] && (email.dirty || email.touched)" >
@@ -40,7 +40,7 @@
                 </ion-item>
                 <ion-item>
                   <ion-label position="floating">CPF</ion-label>
-                  <ion-input placeholder="Digite seu CPF"></ion-input>
+                  <ion-input id="cpf" formControlName="cpf"></ion-input>
 
                   <ng-container *ngFor="let erro of menssagensErro.cpf">
                     <span class="msg-erro" *ngIf="cpf.errors?.[erro.tipo] && (cpf.dirty || cpf.touched)" >
@@ -51,7 +51,7 @@
                 </ion-item>
                 <ion-item>
                   <ion-label position="floating">Senha</ion-label>
-                  <ion-input placeholder="Digite a senha"></ion-input>
+                  <ion-input id="senha" formControlName="senha"></ion-input>
 
                   <ng-container *ngFor="let erro of menssagensErro.senha">
                     <span class="msg-erro" *ngIf="senha.errors?.[erro.tipo] && (senha.dirty || senha.touched)" >
@@ -62,7 +62,7 @@
                 </ion-item>
                 <ion-item>
                   <ion-label position="floating">Confirmar senha</ion-label>
-                  <ion-input placeholder="Confirme a senha"></ion-input>
+                  <ion-input id="confirmasenha" formControlName="confirmasenha"></ion-input>
 
                   <ng-container *ngFor="let erro of menssagensErro.confirmasenha">
                     <span class="msg-erro" *ngIf="confirmasenha.errors?.[erro.tipo] && (confirmasenha.dirty || confirmasenha.touched)" >
@@ -74,7 +74,7 @@
               </ion-card-content>
        </form> 
     </ion-card>
-    <ion-button expand="full">Registrar</ion-button>
+    <ion-button expand="full" (click)="salvar()">Registrar</ion-button>
     <ion-grid>
       <ion-row>
         <ion-col>
