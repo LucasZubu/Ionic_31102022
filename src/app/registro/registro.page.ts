@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Usuario } from '../models/Usuario.model';
 import { StorageService } from '../services/storage.service';
+import { UsuariosService } from '../services/usuarios.service';
 
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.page.html',
   styleUrls: ['./registro.page.scss'],
 })
-export class RegistroPage implements OnInit {     
+export class RegistroPage implements OnInit {
+  usuario : Usuario = new.Usuario();        
   pessoa = {};
   
   registroForm = this.formBuilder.group({
@@ -37,7 +40,7 @@ export class RegistroPage implements OnInit {
 };
 
 
-  constructor(private formBuilder: FormBuilder, private bd: StorageService) { }
+  constructor(private formBuilder: FormBuilder, private bd: StorageService, private usuariosService : UsuariosService) { }
 
   get nome(){
        return this.registroForm.get('nome');
@@ -61,5 +64,23 @@ export class RegistroPage implements OnInit {
 
      async salvar(){
           this.bd.set('email',this.pessoa)
+          if (this.registroForm.valid){
+            this.usuario.nome = this.registroForm.get('nome').value;
+            this.usuario.email = this.registroForm.get('email').value;
+            this.usuario.cpf = this.registroForm.get('cpf').value;
+            this.usuario.senha = this.registroForm.get('senha').value;
+            
+            const id = await this.usuariosService.buscarId() as number;
+
+            this.usuario.id = id;
+
+            this.usuariosService.salvar(this.usuario);
+            
+            this.usuariosService.salvarId(id+1);
+
+          }
+          else{
+               alert('Formulario Inválido');
+          }
      }
 }

@@ -25,7 +25,10 @@ export class UsuariosService {
     await this.storageService.set('usuarios',this.listaUsuarios);
   }
 
-  async buscarUm() { }
+  async buscarUm(id: number) {
+    this.buscarTodos();
+    return this.listaUsuarios[id];
+   }
 
   async buscarTodos() {
     // unknow é pra quando for vazio e quando n for é a lista de usuarios
@@ -37,7 +40,11 @@ export class UsuariosService {
     return this.listaUsuarios;    
    }
 
-  async deletar() { }
+  async deletar(id : number) { 
+    this.buscarTodos();//Atualiza a lista de Usuário
+    this.listaUsuarios.slice(id,1);//Remove o usuário do array
+    await this.storageService.set('usuarios', this.listaUsuarios); //Salva o Array
+  }
 
   async salvarId(id: number) { 
     await this.storageService.set('idUsuario',id);
