@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Usuario } from '../models/Usuario.model';
+import { UsuariosService } from '../services/usuarios.service';
 
 @Component({
   selector: 'app-tab1',
@@ -7,6 +9,6 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
-  constructor() {}
+  constructor(private usuariosService: UsuariosService ) {}
 
 }
