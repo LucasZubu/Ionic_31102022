@@ -51,5 +51,9 @@ export class LoginPage implements OnInit {
       alert('Formulario Invalido!')
     }
   }
+
+  async registroPage(){
+    this.route.navigateByUrl('/registro');
+  }
   
 }

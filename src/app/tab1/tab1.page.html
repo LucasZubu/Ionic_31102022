@@ -7,5 +7,10 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  
+    <ion-item *ngFor="let user of listaUsuarios">
+      <ion-label>
+        {{user.nome}}
+      </ion-label>
+    </ion-item>
+    <ion-button expand="block" (click)="cadastroPage()">Cadastro de Produtos</ion-button>
 </ion-content>

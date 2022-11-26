@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Usuario } from '../models/Usuario.model';
 import { UsuariosService } from '../services/usuarios.service';
 
@@ -7,8 +8,27 @@ import { UsuariosService } from '../services/usuarios.service';
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss']
 })
-export class Tab1Page {
+export class Tab1Page implements OnInit{
 
-  constructor(private usuariosService: UsuariosService ) {}
+  listaUsuarios: Usuario[] = [];
+
+  constructor(private usuariosService: UsuariosService,private route: Router ) { }
+
+  async buscarUsuarios(){
+    //retornando variaves e consultas de outras paginas
+    this.listaUsuarios = await this.usuariosService.buscarTodos();
+  }
+
+  async cadastroPage(){
+      this.route.navigateByUrl('/cadastro');
+  }
+
+  ngOnInit(): void {
+    
+  }
+
+  ionViewWillEnter(){
+    this.buscarUsuarios();
+  }
 
 }

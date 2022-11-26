@@ -1,0 +1,86 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>cadastro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <form [formGroup]="cadastroForm">
+            <ion-card-header>
+               <ion-item lines="none" color="dark">
+                 <label class="meio">CADASTRO DE PRODUTOSS</label>
+               </ion-item>
+             </ion-card-header>
+
+             <ion-card-content>
+               <ion-item>
+                 <ion-label position="floating">Nome</ion-label>
+                 <ion-input id="nome" formControlName="nome"></ion-input>
+
+                 <ng-container *ngFor="let erro of menssagensErro.nome">
+                   <span class="msg-erro" *ngIf="nome.errors?.[erro.tipo] && (nome.dirty || nome.touched)" >
+                     {{erro.aviso}} 
+                   </span>  
+                 </ng-container>
+
+               </ion-item>
+               <ion-item>
+                 <ion-label position="floating">Descrição</ion-label>
+                 <ion-input id="descricao" formControlName="descricao"></ion-input>
+
+                 <ng-container *ngFor="let erro of menssagensErro.descricao">
+                   <span class="msg-erro" *ngIf="descricao.errors?.[erro.tipo] && (descricao.dirty || descricao.touched)" >
+                     {{erro.aviso}} 
+                   </span>   
+                 </ng-container> 
+
+               </ion-item>
+               <ion-item>
+                 <ion-label position="floating">Data Validade</ion-label>
+                 <ion-datetime-button datetime="datetime" id="dataValidade" formControlName="dataValidade"></ion-datetime-button>
+
+                 <ng-container *ngFor="let erro of menssagensErro.dataValidade">
+                   <span class="msg-erro" *ngIf="dataValidade.errors?.[erro.tipo] && (dataValidade.dirty || dataValidade.touched)" >
+                     {{erro.aviso}} 
+                   </span>   
+                 </ng-container>
+
+               </ion-item>
+               <ion-item>
+                 <ion-label position="floating">Senha</ion-label>
+                 <ion-input id="senha" formControlName="senha"></ion-input>
+
+                 <ng-container *ngFor="let erro of menssagensErro.senha">
+                   <span class="msg-erro" *ngIf="senha.errors?.[erro.tipo] && (senha.dirty || senha.touched)" >
+                     {{erro.aviso}} 
+                   </span>   
+                 </ng-container>
+
+               </ion-item>
+               <ion-item>
+                 <ion-label position="floating">Confirmar senha</ion-label>
+                 <ion-datetime-button datetime="datetime"></ion-datetime-button>
+
+                 <ng-container *ngFor="let erro of menssagensErro.confirmasenha">
+                   <span class="msg-erro" *ngIf="confirmasenha.errors?.[erro.tipo] && (confirmasenha.dirty || confirmasenha.touched)" >
+                     {{erro.aviso}} 
+                   </span>   
+                 </ng-container>   
+
+               </ion-item>
+             </ion-card-content>
+      </form> 
+   </ion-card>
+   <ion-button expand="full" (click)="salvar()">Registrar</ion-button>
+   <ion-grid>
+     <ion-row>
+       <ion-col>
+         <ion-button expand="full">Voltar</ion-button>
+       </ion-col>
+       <ion-col>
+         <ion-button expand="full">Limpar</ion-button>
+       </ion-col>
+     </ion-row>
+   </ion-grid>
+</ion-content>
