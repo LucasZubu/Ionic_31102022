@@ -16,75 +16,64 @@
              <ion-card-content>
                <ion-item>
                  <ion-label position="floating">Nome</ion-label>
-                 <ion-input id="nome" formControlName="nome"></ion-input>
-                  <!--
+                 <ion-input  id="nome" formControlName="nome"></ion-input>
+                </ion-item> 
                  <ng-container *ngFor="let erro of menssagensErro.nome">
                    <span class="msg-erro" *ngIf="nome.errors?.[erro.tipo] && (nome.dirty || nome.touched)" >
                      {{erro.aviso}} 
                    </span>  
-                 </ng-container>-->
-
-               </ion-item>
+                 </ng-container>
+               
+               
                <ion-item>
                  <ion-label position="floating">Descrição</ion-label>
                  <ion-input id="descricao" formControlName="descricao"></ion-input>
 
-                 <!--
+                 
                  <ng-container *ngFor="let erro of menssagensErro.descricao">
                    <span class="msg-erro" *ngIf="descricao.errors?.[erro.tipo] && (descricao.dirty || descricao.touched)" >
                      {{erro.aviso}} 
                    </span>   
-                 </ng-container> -->
+                 </ng-container> 
 
                </ion-item>
+               
                <ion-item>
-                 <ion-label position="floating">Data Validade</ion-label>
-                 <ion-datetime-button datetime="datetime" id="dataValidade" formControlName="dataValidade"></ion-datetime-button>
+                 <ion-label>Data Validade</ion-label>
+                 <br>
+                 <ion-datetime
+                    presentation="date" id="dataValidade" formControlName="dataValidade"
+                  ></ion-datetime>
 
-                 <!--
+                
                  <ng-container *ngFor="let erro of menssagensErro.dataValidade">
                    <span class="msg-erro" *ngIf="dataValidade.errors?.[erro.tipo] && (dataValidade.dirty || dataValidade.touched)" >
                      {{erro.aviso}} 
                    </span>   
-                 </ng-container> -->
+                 </ng-container>
 
                </ion-item>
+               
                <ion-item>
-                 <ion-label position="floating">Senha</ion-label>
-                 <ion-input id="senha" formControlName="senha"></ion-input>
+                 <ion-label position="floating">Preço</ion-label>
+                 <ion-input type="number" id="preco" formControlName="preco"></ion-input>
 
-                 <!--
-                 <ng-container *ngFor="let erro of menssagensErro.senha">
-                   <span class="msg-erro" *ngIf="senha.errors?.[erro.tipo] && (senha.dirty || senha.touched)" >
+                
+                 <ng-container *ngFor="let erro of menssagensErro.preco">
+                   <span class="msg-erro" *ngIf="preco.errors?.[erro.tipo] && (preco.dirty || preco.touched)" >
                      {{erro.aviso}} 
                    </span>   
-                 </ng-container> -->
+                 </ng-container>
 
                </ion-item>
-               <ion-item>
-                 <ion-label position="floating">Confirmar senha</ion-label>
-                 <ion-datetime-button datetime="datetime"></ion-datetime-button>
-
-                 <!--
-                 <ng-container *ngFor="let erro of menssagensErro.confirmasenha">
-                   <span class="msg-erro" *ngIf="confirmasenha.errors?.[erro.tipo] && (confirmasenha.dirty || confirmasenha.touched)" >
-                     {{erro.aviso}} 
-                   </span>   
-                 </ng-container>   -->
-
-               </ion-item>
+    
              </ion-card-content>
       </form> 
    </ion-card>
-   <ion-button expand="full" (click)="salvar()">Registrar</ion-button>
-   <ion-grid>
-     <ion-row>
-       <ion-col>
-         <ion-button expand="full">Voltar</ion-button>
-       </ion-col>
-       <ion-col>
-         <ion-button expand="full">Limpar</ion-button>
-       </ion-col>
-     </ion-row>
-   </ion-grid>
+
+  <ion-footer [translucent]="true">
+    <ion-toolbar>
+      <ion-button expand="full" (click)="salvar()">Salvar</ion-button> 
+    </ion-toolbar>
+  </ion-footer>
 </ion-content>
